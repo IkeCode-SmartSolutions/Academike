@@ -1,0 +1,107 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>@ViewData["Title"] - Learnike</title>
+
+    <environment names="Development">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,800,300&amp;subset=latin" rel="stylesheet" type="text/css">
+
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="~/lib/ionicons/css/ionicons.css" />
+
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
+        <link rel="stylesheet" href="~/themes/PixelAdmin/css/bootstrap.css" />
+
+        <link rel="stylesheet" href="~/themes/PixelAdmin/css/pixeladmin.css" />
+        <link rel="stylesheet" href="~/themes/PixelAdmin/css/widgets.css" />
+        <link rel="stylesheet" href="~/themes/PixelAdmin/css/themes/default.css" />
+
+        <link rel="stylesheet" href="~/css/laernike.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,800,300&amp;subset=latin" rel="stylesheet" type="text/css">
+
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="~/lib/ionicons/css/ionicons.min.css" />
+
+        @*<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+            asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+            asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />*@
+        <link rel="stylesheet" href="~/themes/PixelAdmin/css/bootstrap.min.css" />
+
+        <link rel="stylesheet" href="~/themes/PixelAdmin/css/pixeladmin.min.css" />
+        <link rel="stylesheet" href="~/themes/PixelAdmin/css/widgets.min.css" />
+        <link rel="stylesheet" href="~/themes/PixelAdmin/css/themes/default.min.css" />
+
+        <link rel="stylesheet" href="~/css/laernike.min.css" asp-append-version="true" />
+    </environment>
+    @Html.Raw(JavaScriptSnippet.FullScript)
+</head>
+<body class="px-navbar-fixed">
+    @await Html.PartialAsync("_Menu")
+
+    @await Html.PartialAsync("_Header")
+
+    <div class="px-content" style="padding-bottom:210px">
+        @await Html.PartialAsync("_Breadcrumb")
+
+        @await Html.PartialAsync("_PageHeader")
+
+        <div class="row">
+            <div class="col-md-12">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    @await Html.PartialAsync("_Footer")
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+
+        @*<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
+        <script src="~/themes/PixelAdmin/js/bootstrap.js"></script>
+
+        <script src="~/themes/PixelAdmin/js/pixeladmin.js"></script>
+
+        <script src="~/js/learnike.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+        <!--[if !IE]> -->
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <!-- <![endif]-->
+        <!--[if lte IE 9]>
+          <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">'+"<"+"/script>"); </script>
+        <![endif]-->
+        @*<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+            </script>*@
+
+        <script src="~/themes/PixelAdmin/js/bootstrap.min.js"></script>
+        <script src="~/themes/PixelAdmin/js/pixeladmin.min.js"></script>
+
+        <script src="~/js/learnike.min.js" asp-append-version="true"></script>
+    </environment>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#px-nav').pxNav();
+            $('#px-footer').pxFooter();
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "outDir": "./wwwroot/js",
+    "outFile": "./wwwroot/js/learnike.js",
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "exclude": [
+    "node_modules",
+    "wwwroot"
+  ],
+  "include": [
+    "./Typescript/**/*.ts"
+  ],
+  "compileOnSave": true
+}

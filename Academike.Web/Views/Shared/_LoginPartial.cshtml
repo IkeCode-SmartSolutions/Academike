@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IkeCode.Data
+
+@inject SignInManager<IcUser> SignInManager
+@inject UserManager<IcUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <img src="~/images/demo/avatars/1.jpg" alt="" class="px-navbar-image">
+            <span class="hidden-md">@UserManager.GetUserName(User)</span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a asp-area="" asp-controller="Manage" asp-action="Index">
+                    <span class="label label-warning pull-xs-right">Novo</span>
+                    Perfil
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="dropdown-icon fa fa-cog"></i>
+                    &nbsp;&nbsp;Configurações
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a asp-controller="Account" asp-action="Logout">
+                    <i class="dropdown-icon fa fa-power-off"></i>
+                    &nbsp;&nbsp;Sair
+                </a>
+            </li>
+        </ul>
+    </li>
+}
+else
+{
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="hidden-md">Entrar</span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+            <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
+        </ul>
+    </li>
+}

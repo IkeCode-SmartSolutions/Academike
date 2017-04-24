@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IkeCode.Data
+
+@inject SignInManager<IcUser> SignInManager
+@inject UserManager<IcUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="px-nav-box p-a-3 b-b-1">
+        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <img src="~/images/demo/avatars/1.jpg" alt="" class="pull-xs-left m-r-2 border-round" style="width: 54px; height: 54px;">
+        <div class="font-size-11"><span class="font-weight-light">Olá, </span>@UserManager.GetUserName(User)</div>
+        <div class="btn-group" style="margin-top: 4px;">
+            <a href="#" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-envelope"></i></a>
+            <a href="#" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-user"></i></a>
+            <a href="#" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-cog"></i></a>
+            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+                <button type="submit" class="btn btn-xs btn-danger btn-outline"><i class="fa fa-power-off"></i></button>
+            </form>
+        </div>
+    </li>
+}
+else
+{
+    <li class="px-nav-box p-a-3 b-b-1">
+        <a asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+        <a asp-area="" asp-controller="Account" asp-action="Login">Log in</a>
+    </li>
+}

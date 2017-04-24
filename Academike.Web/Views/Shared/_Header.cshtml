@@ -1,0 +1,34 @@
+<nav class="navbar px-navbar">
+    <!-- Header -->
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Learnike</a>
+    </div>
+
+    <!-- Navbar togglers -->
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"><i class="navbar-toggle-icon"></i></button>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#"
+                   class="dropdown-toggle"
+                   data-toggle="dropdown"
+                   role="button"
+                   aria-haspopup="true"
+                   aria-expanded="false"><i class="ion-plus-round"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="ion-ios-book-outline"></i>&nbsp;&nbsp; Caderno</a></li>
+                    <li><a href="#"><i class="ion-ios-paper-outline"></i>&nbsp;&nbsp; Nota</a></li>
+                    @*<li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>*@
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            @await Html.PartialAsync("_HeaderNotifications")
+            @await Html.PartialAsync("_LoginPartial")
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>
