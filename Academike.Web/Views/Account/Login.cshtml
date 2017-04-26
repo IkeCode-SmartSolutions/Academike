@@ -1,0 +1,192 @@
+﻿@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Login";
+}
+
+@section PageHeader{
+    <script>var pxInit = [];</script>
+    <!-- Custom styling -->
+    <style>
+        .page-signin-modal {
+            position: relative;
+            top: auto;
+            right: auto;
+            bottom: auto;
+            left: auto;
+            z-index: 1;
+            display: block;
+        }
+
+        .page-signin-form-group {
+            position: relative;
+        }
+
+        .page-signin-icon {
+            position: absolute;
+            line-height: 21px;
+            width: 36px;
+            border-color: rgba(0, 0, 0, .14);
+            border-right-width: 1px;
+            border-right-style: solid;
+            left: 1px;
+            top: 9px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        html[dir="rtl"] .page-signin-icon {
+            border-right: 0;
+            border-left-width: 1px;
+            border-left-style: solid;
+            left: auto;
+            right: 1px;
+        }
+
+        html:not([dir="rtl"]) .page-signin-icon + .page-signin-form-control {
+            padding-left: 50px;
+        }
+
+        html[dir="rtl"] .page-signin-icon + .page-signin-form-control {
+            padding-right: 50px;
+        }
+
+        #page-signin-forgot-form {
+            display: none;
+        }
+
+        /* Margins */
+
+        .page-signin-modal > .modal-dialog {
+            margin: 30px 10px;
+        }
+
+        @@media (min-width: 544px) {
+            .page-signin-modal > .modal-dialog {
+                margin: 60px auto;
+            }
+        }
+    </style>
+    <!-- / Custom styling -->
+}
+
+<div class="page-signin-modal modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="box m-a-0">
+                <div class="box-row">
+                    <div class="box-cell col-md-5 bg-primary p-a-4">
+                        <div class="text-xs-center text-md-left">
+                            <a class="px-demo-brand px-demo-brand-lg" href="/">
+                                <span class="font-size-18 line-height-1">
+                                    Academ<strong>ike</strong>
+                                </span>
+                            </a>
+                            <div class="font-size-15 m-t-1 line-height-1">Simples. Flexivel. Sempre &agrave; m&atilde;o.</div>
+                        </div>
+                        <ul class="list-group m-t-3 m-b-0 visible-md visible-lg visible-xl">
+                            <li class="list-group-item p-x-0 p-b-0 b-a-0">
+                                <i class="list-group-icon fa fa-sitemap text-white"></i> Em qualquer lugar
+                            </li>
+                            <li class="list-group-item p-x-0 p-b-0 b-a-0">
+                                <i class="list-group-icon fa fa-file-text-o text-white"></i> Editor completo
+                            </li>
+                            <li class="list-group-item p-x-0 p-b-0 b-a-0">
+                                <i class="list-group-icon fa fa-heart text-white"></i> Feito com amor
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="box-cell col-md-7">
+                        <!-- Sign In form -->
+                        <form action="index.html" class="p-a-4" id="page-signin-form">
+                            <h4 class="m-t-0 m-b-4 text-xs-center font-weight-semibold">
+                                Fa&ccedil;a Login para continuar
+                            </h4>
+                            <fieldset class="page-signin-form-group form-group form-group-lg">
+                                <div class="page-signin-icon text-muted"><i class="ion-person"></i></div>
+                                <input type="text" class="page-signin-form-control form-control" placeholder="Usu&aacute;rio ou Email">
+                            </fieldset>
+                            <fieldset class="page-signin-form-group form-group form-group-lg">
+                                <div class="page-signin-icon text-muted"><i class="ion-asterisk"></i></div>
+                                <input type="password" class="page-signin-form-control form-control" placeholder="Senha">
+                            </fieldset>
+                            <div class="clearfix">
+                                <label class="custom-control custom-checkbox pull-xs-left">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <span class="custom-control-indicator"></span>
+                                    Lembre-me
+                                </label>
+                                <a href="#" class="font-size-12 text-muted pull-xs-right" id="page-signin-forgot-link">Esqueci minha senha</a>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3">Entrar</button>
+                            <a asp-controller="Account" asp-action="Create" class="btn btn-block btn-lg btn-warning font-size-13">
+                                <span class="btn-label-icon left fa fa-sign-in"></span>
+                                N&atilde;o &eacute; membro? <strong>Cadastre-se!</strong>
+                            </a>
+                        </form>
+                        <div class="p-y-3 p-x-4 b-t-1 bg-white darken" id="page-signin-social">
+                            <a href="#" class="btn btn-block btn-lg btn-info font-size-13">
+                                <span class="btn-label-icon left fa fa-facebook"></span>
+                                Entre com o <strong>Facebook</strong>
+                            </a>
+                        </div>
+                        <!-- / Sign In form -->
+                        <!-- Reset form -->
+                        <form action="/cadastre-se" class="p-a-4" id="page-signin-forgot-form">
+                            <h4 class="m-t-0 m-b-4 text-xs-center font-weight-semibold">Resetar senha</h4>
+                            <fieldset class="page-signin-form-group form-group form-group-lg">
+                                <div class="page-signin-icon text-muted"><i class="ion-at"></i></div>
+                                <input type="email" class="page-signin-form-control form-control" placeholder="Seu Email">
+                            </fieldset>
+                            <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3">Me envie o link</button>
+                            <div class="m-t-2 text-muted">
+                                <a href="#" id="page-signin-forgot-back">&larr; Voltar</a>
+                            </div>
+                        </form>
+                        <!-- / Reset form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Javascript -->
+    <script>
+    $(function () {
+        $('#page-signin-forgot-link').on('click', function (e) {
+            e.preventDefault();
+
+            $('#page-signin-form, #page-signin-social')
+                .css({ opacity: '1' })
+                .animate({ opacity: '0' }, 200, function () {
+                    $(this).hide();
+
+                    $('#page-signin-forgot-form')
+                        .css({ opacity: '0', display: 'block' })
+                        .animate({ opacity: '1' }, 200)
+                        .find('.form-control').first().focus();
+
+                    $(window).trigger('resize');
+                });
+        });
+
+        $('#page-signin-forgot-back').on('click', function (e) {
+            e.preventDefault();
+
+            $('#page-signin-forgot-form')
+                .animate({ opacity: '0' }, 200, function () {
+                    $(this).css({ display: 'none' });
+
+                    $('#page-signin-form, #page-signin-social')
+                        .show()
+                        .animate({ opacity: '1' }, 200)
+                        .find('.form-control').first().focus();
+
+                    $(window).trigger('resize');
+                });
+        });
+    });
+    </script>
+    <!-- / Javascript -->
+}

@@ -1,14 +1,114 @@
 ﻿@{
-    ViewData["Title"] = "Error";
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Ooops!";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+@section PageHeader{
+    <style type="text/css">
+        .jqstooltip {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            visibility: hidden;
+            background: rgb(0, 0, 0) transparent;
+            background-color: rgba(0,0,0,0.6);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+            -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+            color: white;
+            font: 10px arial, san serif;
+            text-align: left;
+            white-space: nowrap;
+            padding: 5px;
+            border: 1px solid white;
+            box-sizing: content-box;
+            z-index: 10000;
+        }
 
-<h3>Development Mode</h3>
-<p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
-</p>
-<p>
-    <strong>Development environment should not be enabled in deployed applications</strong>, as it can result in sensitive information from exceptions being displayed to end users. For local debugging, development environment can be enabled by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>, and restarting the application.
-</p>
+        .jqsfield {
+            color: white;
+            font: 10px arial, san serif;
+            text-align: left;
+        }
+    </style>
+
+    <script>var pxInit = [];</script>
+
+    <!-- Custom styling -->
+    <style>
+        .page-500-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .page-500-header,
+        .page-500-error-code,
+        .page-500-subheader,
+        .page-500-text {
+            position: relative;
+            padding: 0 30px;
+            text-align: center;
+        }
+
+        .page-500-header {
+            width: 100%;
+            padding: 20px 0;
+            box-shadow: 0 4px 0 rgba(0,0,0,.1);
+        }
+
+        .page-500-error-code {
+            margin-top: 60px;
+            color: #fff;
+            text-shadow: 0 4px 0 rgba(0,0,0,.1);
+            font-size: 120px;
+            font-weight: 700;
+            line-height: 140px;
+        }
+
+        .page-500-subheader,
+        .page-500-text {
+            margin-bottom: 60px;
+            color: rgba(0,0,0,.5);
+            font-weight: 600;
+        }
+
+        .page-500-subheader {
+            font-size: 50px;
+        }
+
+            .page-500-subheader:after {
+                position: absolute;
+                bottom: -30px;
+                left: 50%;
+                display: block;
+                width: 40px;
+                height: 4px;
+                margin-left: -20px;
+                content: "";
+                background: rgba(0,0,0,.2);
+            }
+
+        .page-500-text {
+            font-size: 20px;
+        }
+    </style>
+    <!-- / Custom styling -->
+}
+<div id="px-breakpoint-lg"></div><div id="px-breakpoint-md"></div><div id="px-breakpoint-sm"></div><div id="px-breakpoint-xs"></div>
+
+<div class="page-500-bg bg-danger"></div>
+<div class="page-500-header bg-white">
+    <a class="px-demo-brand px-demo-brand-lg text-default" href="/">
+        Academ<strong>ike</strong>
+    </a>
+</div>
+<h1 class="page-500-error-code"><strong>500</strong></h1>
+<h2 class="page-500-subheader">OUCH!</h2>
+<h3 class="page-500-text">
+    Algo não aconteceu como esper&aacute;vamos...
+    <br>
+    <br>
+    <span class="font-size-16 font-weight-normal">Esperamos que seja resolvido logo!</span>
+</h3>

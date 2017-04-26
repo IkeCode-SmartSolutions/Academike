@@ -1,0 +1,115 @@
+﻿@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Cadastre-se!";
+}
+
+@section PageHeader{
+    <script>var pxInit = [];</script>
+    <!-- Custom styling -->
+    <style>
+        .page-signup-modal {
+          position: relative;
+          top: auto;
+          right: auto;
+          bottom: auto;
+          left: auto;
+          z-index: 1;
+          display: block;
+        }
+
+        .page-signup-form-group { position: relative; }
+
+        .page-signup-icon {
+          position: absolute;
+          line-height: 21px;
+          width: 36px;
+          border-color: rgba(0, 0, 0, .14);
+          border-right-width: 1px;
+          border-right-style: solid;
+          left: 1px;
+          top: 9px;
+          text-align: center;
+          font-size: 15px;
+        }
+
+        html[dir="rtl"] .page-signup-icon {
+          border-right: 0;
+          border-left-width: 1px;
+          border-left-style: solid;
+          left: auto;
+          right: 1px;
+        }
+
+        html:not([dir="rtl"]) .page-signup-icon + .page-signup-form-control { padding-left: 50px; }
+        html[dir="rtl"] .page-signup-icon + .page-signup-form-control { padding-right: 50px; }
+
+        /* Margins */
+
+        .page-signup-modal > .modal-dialog { margin: 30px 10px; }
+
+        @@media (min-width: 544px) {
+          .page-signup-modal > .modal-dialog {
+            width: 400px;
+            margin: 60px auto;
+          }
+        }
+    </style>
+    <!-- / Custom styling -->
+}
+<div class="page-signup-modal modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="text-xs-center bg-primary p-y-4">
+                <a class="px-demo-brand px-demo-brand-lg" href="/">
+                    <span class="font-size-18 line-height-1">
+                        Academ<strong>ike</strong>
+                    </span>
+                </a>
+                <div class="font-size-15 m-t-1 line-height-1">Simples. Flexivel. Sempre &agrave; m&atilde;o.</div>
+            </div>
+            <form action="index.html" class="p-a-4">
+                <h4 class="m-t-0 m-b-4 text-xs-center font-weight-semibold">Crie sua conta. &Eacute; Gr&aacute;tis!</h4>
+                <fieldset class="page-signup-form-group form-group form-group-lg">
+                    <div class="page-signup-icon text-muted"><i class="ion-information-circled"></i></div>
+                    <input type="text" class="page-signup-form-control form-control" placeholder="Nome completo">
+                </fieldset>
+                <fieldset class="page-signup-form-group form-group form-group-lg">
+                    <div class="page-signup-icon text-muted"><i class="ion-at"></i></div>
+                    <input type="email" class="page-signup-form-control form-control" placeholder="Email">
+                </fieldset>
+                <fieldset class="page-signup-form-group form-group form-group-lg">
+                    <div class="page-signup-icon text-muted"><i class="ion-person"></i></div>
+                    <input type="text" class="page-signup-form-control form-control" placeholder="Nome de Usu&aacute;rio">
+                </fieldset>
+                <fieldset class="page-signup-form-group form-group form-group-lg">
+                    <div class="page-signup-icon text-muted"><i class="ion-asterisk"></i></div>
+                    <input type="password" class="page-signup-form-control form-control" placeholder="Senha">
+                    <small class="text-muted">Minimo de 8 caracteres e pelo menos uma letra MAIUSCULA</small>
+                </fieldset>
+                <fieldset class="page-signup-form-group form-group form-group-lg">
+                    <div class="page-signup-icon text-muted"><i class="ion-asterisk"></i></div>
+                    <input type="password" class="page-signup-form-control form-control" placeholder="Confirme a senha">
+                </fieldset>
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    Eu concordo com os <a href="#" target="_blank">Termos e Condi&ccedil;&otilde;es de Uso</a>
+                </label>
+                <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3">Efetuar cadastro</button>
+
+                <a asp-controller="Account" asp-action="Login" class="btn btn-block btn-lg btn-warning font-size-13">
+                    Já possui uma conta? <strong>Clique aqui.</strong>
+                </a>
+            </form>
+            <div class="p-y-3 p-x-4 b-t-1 bg-white darken">
+                <a href="index.html" class="btn btn-block btn-lg btn-info font-size-13">
+                    <span class="btn-label-icon left fa fa-facebook"></span>
+                    Entre com o <strong>Facebook</strong>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+}

@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using IkeCode.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace Academike
 {
@@ -37,6 +38,28 @@ namespace Academike
                 .AddEntityFrameworkStores<IcDbContext, int>()
                 .AddDefaultTokenProviders();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = false;
+
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                
+                // Cookie settings
+                options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(150);
+                options.Cookies.ApplicationCookie.LoginPath = "/login";
+                options.Cookies.ApplicationCookie.LogoutPath = "/conta/sair";
+
+                // User settings
+                options.User.RequireUniqueEmail = true;
+            });
+
             // Add framework services.
             services.AddMvc();
         }
@@ -56,7 +79,7 @@ namespace Academike
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            
             app.UseIdentity();
 
             app.UseStaticFiles();
