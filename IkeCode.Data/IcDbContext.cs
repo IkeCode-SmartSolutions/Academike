@@ -18,7 +18,7 @@ namespace IkeCode.Data
             base.OnModelCreating(builder);
             
             //TODO: reflection pra pegar os IcModel e configurar automatico
-            builder.Entity<IcModel>().ConfigureIcModel((_) => { });
+            //builder.Entity<IcModel>().ConfigureIcModel((_) => { });
         }
     }
 }

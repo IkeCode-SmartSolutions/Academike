@@ -10,15 +10,23 @@ namespace IkeCode.Data
     public class Repository<T> : IRepository<T>
         where T : IcModel
     {
-        protected readonly DbContext context;
-        protected DbSet<T> entities;
+        protected readonly IcDbContext Context;
+        protected DbSet<T> Entities;
 
-        public Repository(DbContext context)
+        public Repository(IcDbContext context)
         {
-            this.context = context;
-            entities = context.Set<T>();
+            Context = context;
+            Entities = context.Set<T>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="includes">(Nullable)</param>
+        /// <param name="offset"></param>
+        /// <param name="limit"></param>
+        /// <param name="order">(Nullable)</param>
+        /// <returns></returns>
         public IEnumerable<T> Get(string[] includes, int offset, int limit, string order)
         {
             if (offset < 0)
@@ -30,15 +38,15 @@ namespace IkeCode.Data
             if (includes != null)
                 foreach (var include in includes)
                 {
-                    entities.Include(include);
+                    Entities.Include(include);
                 }
 
             if (string.IsNullOrWhiteSpace(order))
             {
-                entities.OrderBy(i => i.Id);
+                Entities.OrderBy(i => i.Id);
             }
 
-            var result = entities.Skip(offset).Take(limit);
+            var result = Entities.Skip(offset).Take(limit);
             return result;
         }
 
@@ -50,18 +58,18 @@ namespace IkeCode.Data
             if (includes != null)
                 foreach (var include in includes)
                 {
-                    entities.Include(include);
+                    Entities.Include(include);
                 }
 
 
-            var query = entities.FirstOrDefault(i => i.Id == id);
+            var query = Entities.FirstOrDefault(i => i.Id == id);
 
             return query;
         }
 
         protected virtual void OnRemove(T entity)
         {
-            entities.Remove(entity);
+            Entities.Remove(entity);
         }
 
         public bool Remove(int key)
@@ -76,7 +84,7 @@ namespace IkeCode.Data
             {
                 OnRemove(entity);
 
-                context.SaveChanges();
+                Context.SaveChanges();
             }
 
             return result;
@@ -90,14 +98,14 @@ namespace IkeCode.Data
             if (item.Id == 0)
             {
                 item.CreatedAt = DateTime.UtcNow;
-                entities.Add(item);
+                Entities.Add(item);
             }
             else
             {
-                entities.Update(item);
+                Entities.Update(item);
             }
 
-            context.SaveChanges();
+            Context.SaveChanges();
         }
     }
 }

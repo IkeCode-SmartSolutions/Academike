@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Academike.Controllers
+namespace Academike.Web.Controllers
 {
     [Authorize]
     public class HomeController : Controller

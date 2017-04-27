@@ -60,6 +60,8 @@ namespace Academike
                 options.User.RequireUniqueEmail = true;
             });
 
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
             // Add framework services.
             services.AddMvc();
         }
