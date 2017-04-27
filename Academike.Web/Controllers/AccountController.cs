@@ -69,11 +69,6 @@ namespace Academike.Web.Controllers
                     var user = await _userManager.FindByEmailAsync(model.UserNameOrEmail);
                     if (user != null)
                         model.UserNameOrEmail = user.UserName;
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, "Tentativa de login inválida. Tente novamente.");
-                        return View("Login", model);
-                    }
                 }
 
                 var result = await _signInManager.PasswordSignInAsync(model.UserNameOrEmail, model.Password, model.RememberMe, lockoutOnFailure: false);
