@@ -92,7 +92,7 @@ namespace Academike.Web.Controllers
         }
 
         [AllowAnonymous]
-        [Route("cadastre-se")]
+        [Route("/cadastre-se")]
         public IActionResult SignUp()
         {
             return View();
