@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academike.Web", "Academike.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IkeCode.Data", "IkeCode.Data\IkeCode.Data.csproj", "{FE5A8A69-A702-4795-A750-35112C7E46C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academike.Model", "Academike.Model\Academike.Model.csproj", "{B8461CCB-F2D2-4080-BB3D-A576D988F3C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academike.Data", "Academike.Data\Academike.Data.csproj", "{DA328A14-29E3-4A98-A403-7B4601B39562}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{FE5A8A69-A702-4795-A750-35112C7E46C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE5A8A69-A702-4795-A750-35112C7E46C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE5A8A69-A702-4795-A750-35112C7E46C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8461CCB-F2D2-4080-BB3D-A576D988F3C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8461CCB-F2D2-4080-BB3D-A576D988F3C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8461CCB-F2D2-4080-BB3D-A576D988F3C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8461CCB-F2D2-4080-BB3D-A576D988F3C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA328A14-29E3-4A98-A403-7B4601B39562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA328A14-29E3-4A98-A403-7B4601B39562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA328A14-29E3-4A98-A403-7B4601B39562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA328A14-29E3-4A98-A403-7B4601B39562}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

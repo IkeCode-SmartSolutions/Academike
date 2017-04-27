@@ -9,23 +9,24 @@ using IkeCode.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Academike.Web.ViewModels;
+using Academike.Data;
 
 namespace Academike.Web.Controllers
 {
     [Route("/conta")]
     public class AccountController : Controller
     {
-        //private readonly IRepository<Test> _userRepository;
-        private readonly UserManager<IcUser> _userManager;
-        private readonly SignInManager<IcUser> _signInManager;
+        //private readonly IRepository<Test> _testRepository;
+        private readonly UserManager<AcademikeUser> _userManager;
+        private readonly SignInManager<AcademikeUser> _signInManager;
         private readonly string _externalCookieScheme;
 
-        public AccountController(/*IRepository<Test> userRepository*/
-            UserManager<IcUser> userManager,
-            SignInManager<IcUser> signInManager,
+        public AccountController(/*IRepository<Test> testRepository*/
+            UserManager<AcademikeUser> userManager,
+            SignInManager<AcademikeUser> signInManager,
             IOptions<IdentityCookieOptions> identityCookieOptions)
         {
-            //_userRepository = userRepository;
+            //_testRepository = testRepository;
             _userManager = userManager;
             _signInManager = signInManager;
             _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
@@ -115,10 +116,10 @@ namespace Academike.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new IcUser
+                    var user = new AcademikeUser
                     {
                         FullName = model.Name,
-                        UserName = model.Email,
+                        UserName = model.UserName,
                         Email = model.Email
                     };
 
@@ -134,7 +135,7 @@ namespace Academike.Web.Controllers
                         //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
 
                         await _signInManager.SignInAsync(user, isPersistent: true);
-                        return RedirectToAction("LoginAsync");
+                        return RedirectToAction("Index", "Home");
                     }
                     AddErrors(result);
                 }

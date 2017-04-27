@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace IkeCode.Data
     public class Repository<T> : IRepository<T>
         where T : IcModel
     {
-        protected readonly IcDbContext Context;
+        protected readonly IcDbContext<IdentityUser<int>> Context;
         protected DbSet<T> Entities;
 
-        public Repository(IcDbContext context)
+        public Repository(IcDbContext<IdentityUser<int>> context)
         {
             Context = context;
             Entities = context.Set<T>();

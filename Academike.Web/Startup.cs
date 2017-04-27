@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using IkeCode.Data;
 using Microsoft.AspNetCore.Http;
+using Academike.Data;
 
 namespace Academike
 {
@@ -31,11 +32,11 @@ namespace Academike
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<IcDbContext>(options =>
+            services.AddDbContext<AcademikeContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<IcUser, IdentityRole<int>>()
-                .AddEntityFrameworkStores<IcDbContext, int>()
+            services.AddIdentity<AcademikeUser, IdentityRole<int>>()
+                .AddEntityFrameworkStores<AcademikeContext, int>()
                 .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>

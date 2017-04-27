@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace IkeCode.Data.Migrations
+namespace Academike.Data.Migrations
 {
     public partial class Add_IdentityModels : Migration
     {

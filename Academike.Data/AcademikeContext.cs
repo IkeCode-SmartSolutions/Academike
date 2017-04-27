@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using IkeCode.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IkeCode.Data
+namespace Academike.Data
 {
-    public class IcDbContext<TUser> : IdentityDbContext<TUser, IdentityRole<int>, int>
-        where TUser : IdentityUser<int>
+    public class AcademikeContext : IcDbContext<AcademikeUser>
     {
-        public IcDbContext(DbContextOptions options)
+        public AcademikeContext(DbContextOptions<AcademikeContext> options)
             : base(options)
         {
         }
@@ -18,7 +17,6 @@ namespace IkeCode.Data
         {
             base.OnModelCreating(builder);
             
-            //TODO: reflection pra pegar os IcModel e configurar automatico
             //builder.Entity<IcModel>().ConfigureIcModel((_) => { });
         }
     }

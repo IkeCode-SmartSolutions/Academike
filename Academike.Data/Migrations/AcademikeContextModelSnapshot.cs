@@ -3,21 +3,20 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using IkeCode.Data;
+using Academike.Data;
 
-namespace IkeCode.Data.Migrations
+namespace Academike.Data.Migrations
 {
-    [DbContext(typeof(IcDbContext))]
-    [Migration("20170427011217_Add_IdentityModels")]
-    partial class Add_IdentityModels
+    [DbContext(typeof(AcademikeContext))]
+    partial class AcademikeContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("IkeCode.Data.IcUser", b =>
+            modelBuilder.Entity("Academike.Data.AcademikeUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -183,7 +182,7 @@ namespace IkeCode.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("IkeCode.Data.IcUser")
+                    b.HasOne("Academike.Data.AcademikeUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -191,7 +190,7 @@ namespace IkeCode.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("IkeCode.Data.IcUser")
+                    b.HasOne("Academike.Data.AcademikeUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -204,7 +203,7 @@ namespace IkeCode.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("IkeCode.Data.IcUser")
+                    b.HasOne("Academike.Data.AcademikeUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

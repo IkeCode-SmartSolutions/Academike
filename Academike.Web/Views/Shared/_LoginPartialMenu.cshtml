@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using IkeCode.Data
+@using Academike.Data
 
-@inject SignInManager<IcUser> SignInManager
-@inject UserManager<IcUser> UserManager
+@inject SignInManager<AcademikeUser> SignInManager
+@inject UserManager<AcademikeUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
