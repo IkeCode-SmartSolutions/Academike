@@ -9,7 +9,10 @@
     <ul class="px-nav-content">
         @{await Html.PartialAsync("_LoginPartialMenu"); }
         <li class="px-nav-item px-nav-dropdown">
-            <a href="#"><i class="px-nav-icon ion-ios-book-outline"></i><span class="px-nav-label">Cadernos</span></a>
+            <a asp-controller="Book" asp-action="Index">
+                <i class="px-nav-icon ion-ios-book-outline"></i>
+                <span class="px-nav-label">Cadernos</span>
+            </a>
 
             <ul class="px-nav-dropdown-menu">
                 <li class="px-nav-item">

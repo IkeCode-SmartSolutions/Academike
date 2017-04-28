@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace IkeCode.Data
 {
-    public interface IBaseRepository<TEntity, TKey>
+    public interface IIcBaseRepository<TEntity, TKey>
     {
         IEnumerable<TEntity> Get(string[] includes, int offset, int limit, string order);
         TEntity Get(TKey key, string[] includes);
@@ -12,8 +13,9 @@ namespace IkeCode.Data
         bool Remove(TKey key);
     }
 
-    public interface IRepository<TEntity> : IBaseRepository<TEntity, int>
-        where TEntity : IcModel
+    public interface IIcRepository<TEntity, TContext> : IIcBaseRepository<TEntity, int>
+        where TEntity : IcBaseModel
+        where TContext : DbContext
     {
     }
 }

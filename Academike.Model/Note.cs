@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Academike.Model
 {
-    public class Book : IcModel<AcademikeUser>
+    public class Note : IcModel<AcademikeUser>
     {
         [Required]
         [MaxLength(60)]
@@ -13,7 +14,9 @@ namespace Academike.Model
 
         [MaxLength(150)]
         public string Description { get; set; }
+        
+        public string Content { get; set; }
 
-        public virtual ICollection<Note> Notes { get; set; }
+        public virtual Book Book { get; set; }
     }
 }

@@ -6,24 +6,18 @@ using System.Text;
 
 namespace IkeCode.Data
 {
-    public interface IIcModel
+    public interface IIcModel<TUser>
+        where TUser : IcUser
     {
-        int Id { get; }
-        DateTime CreatedAt { get; }
-        IcUser Owner { get; }
+        TUser Owner { get; }
         int OwnerId { get; }
     }
 
-    public class IcModel : IIcModel
+    public class IcModel<TUser> : IcBaseModel, IIcModel<TUser>
+        where TUser : IcUser
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
-        [DataType(DataType.DateTime)]
-        public DateTime CreatedAt { get; set; }
-
         [Required]
-        public IcUser Owner { get; set; }
+        public virtual TUser Owner { get; set; }
         public int OwnerId { get; set; }
     }
 }

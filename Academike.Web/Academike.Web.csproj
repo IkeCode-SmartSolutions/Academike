@@ -25,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Academike.Data\Academike.Data.csproj" />
+    <ProjectReference Include="..\Academike.Model\Academike.Model.csproj" />
     <ProjectReference Include="..\IkeCode.Data\IkeCode.Data.csproj" />
   </ItemGroup>
 

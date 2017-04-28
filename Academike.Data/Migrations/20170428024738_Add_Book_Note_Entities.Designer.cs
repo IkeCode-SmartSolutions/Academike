@@ -8,9 +8,10 @@ using Academike.Data;
 namespace Academike.Data.Migrations
 {
     [DbContext(typeof(AcademikeContext))]
-    partial class AcademikeContextModelSnapshot : ModelSnapshot
+    [Migration("20170428024738_Add_Book_Note_Entities")]
+    partial class Add_Book_Note_Entities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

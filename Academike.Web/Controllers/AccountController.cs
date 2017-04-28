@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Academike.Web.ViewModels;
 using Academike.Data;
+using Academike.Model;
 
 namespace Academike.Web.Controllers
 {

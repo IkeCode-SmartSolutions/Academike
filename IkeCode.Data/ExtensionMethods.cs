@@ -17,7 +17,7 @@ namespace IkeCode.Data
         }
 
         public static void ConfigureIcModel<T>(this EntityTypeBuilder<T> entity, Action<EntityTypeBuilder<T>> configure = null)
-            where T : IcModel
+            where T : IcBaseModel
         {
             entity
                 .Property(b => b.CreatedAt)

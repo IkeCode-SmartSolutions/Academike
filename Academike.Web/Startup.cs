@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using IkeCode.Data;
 using Microsoft.AspNetCore.Http;
 using Academike.Data;
+using Academike.Model;
 
 namespace Academike
 {
@@ -61,7 +62,8 @@ namespace Academike
                 options.User.RequireUniqueEmail = true;
             });
 
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            //services.AddScoped(typeof(IIcRepository<,>), typeof(IcRepository<,>));
+            services.AddScoped(typeof(Repository<>));
 
             // Add framework services.
             services.AddMvc();

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Academike.Data
+namespace Academike.Model
 {
     public class AcademikeUser : IcUser
     {

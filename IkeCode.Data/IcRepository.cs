@@ -8,16 +8,17 @@ using System.Text;
 
 namespace IkeCode.Data
 {
-    public class Repository<T> : IRepository<T>
-        where T : IcModel
+    public class IcRepository<TEntity, TContext> : IIcRepository<TEntity, TContext>
+        where TEntity : IcBaseModel
+        where TContext : DbContext
     {
-        protected readonly IcDbContext<IdentityUser<int>> Context;
-        protected DbSet<T> Entities;
+        protected readonly TContext Context;
+        protected DbSet<TEntity> Entities;
 
-        public Repository(IcDbContext<IdentityUser<int>> context)
+        public IcRepository(TContext context)
         {
             Context = context;
-            Entities = context.Set<T>();
+            Entities = context.Set<TEntity>();
         }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace IkeCode.Data
         /// <param name="limit"></param>
         /// <param name="order">(Nullable)</param>
         /// <returns></returns>
-        public IEnumerable<T> Get(string[] includes, int offset, int limit, string order)
+        public IEnumerable<TEntity> Get(string[] includes, int offset, int limit, string order)
         {
             if (offset < 0)
                 throw new ArgumentOutOfRangeException("offset", "offset parameter must to be greater than or equal to 0");
@@ -51,7 +52,7 @@ namespace IkeCode.Data
             return result;
         }
 
-        public T Get(int id, string[] includes = null)
+        public TEntity Get(int id, string[] includes = null)
         {
             if (id < 1)
                 throw new ArgumentOutOfRangeException("key", "key parameter must to be greater than 0");
@@ -68,7 +69,7 @@ namespace IkeCode.Data
             return query;
         }
 
-        protected virtual void OnRemove(T entity)
+        protected virtual void OnRemove(TEntity entity)
         {
             Entities.Remove(entity);
         }
@@ -91,7 +92,7 @@ namespace IkeCode.Data
             return result;
         }
 
-        public void Upsert(T item)
+        public void Upsert(TEntity item)
         {
             if (item == null)
                 throw new ArgumentNullException("item");
