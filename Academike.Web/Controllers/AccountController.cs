@@ -1,34 +1,28 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using IkeCode.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Academike.Web.ViewModels;
-using Academike.Data;
 using Academike.Model;
+using Academike.Web.Services;
 
 namespace Academike.Web.Controllers
 {
     [Route("/conta")]
-    public class AccountController : Controller
+    public class AccountController : BaseAuthController
     {
-        //private readonly IRepository<Test> _testRepository;
-        private readonly UserManager<AcademikeUser> _userManager;
         private readonly SignInManager<AcademikeUser> _signInManager;
         private readonly string _externalCookieScheme;
 
-        public AccountController(/*IRepository<Test> testRepository*/
+        public AccountController(
             UserManager<AcademikeUser> userManager,
             SignInManager<AcademikeUser> signInManager,
-            IOptions<IdentityCookieOptions> identityCookieOptions)
+            IOptions<IdentityCookieOptions> identityCookieOptions,
+            IIcLayoutMetadataServiceContainer layoutMetadataService)
+            : base(userManager, layoutMetadataService)
         {
-            //_testRepository = testRepository;
-            _userManager = userManager;
             _signInManager = signInManager;
             _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
         }
@@ -68,7 +62,7 @@ namespace Academike.Web.Controllers
             {
                 if(model.UserNameOrEmail.Contains("@"))
                 {
-                    var user = await _userManager.FindByEmailAsync(model.UserNameOrEmail);
+                    var user = await UserManager.FindByEmailAsync(model.UserNameOrEmail);
                     if (user != null)
                         model.UserNameOrEmail = user.UserName;
                 }
@@ -124,7 +118,7 @@ namespace Academike.Web.Controllers
                         Email = model.Email
                     };
 
-                    var result = await _userManager.CreateAsync(user, model.Password);
+                    var result = await UserManager.CreateAsync(user, model.Password);
 
                     if (result.Succeeded)
                     {
@@ -156,8 +150,8 @@ namespace Academike.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByEmailAsync(model.UserNameOrEmail);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                var user = await UserManager.FindByEmailAsync(model.UserNameOrEmail);
+                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return RedirectToAction("LoginAsync");

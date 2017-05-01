@@ -1,4 +1,31 @@
-﻿<ol class="breadcrumb page-breadcrumb">
-    <li><a href="index.html">Home</a></li>
-    <li class="active">Nota</li>
+﻿@inject IIcBreadcrumbService breadcrumbService
+<ol class="breadcrumb page-breadcrumb">
+    @if (breadcrumbService.Levels.Count() > 0)
+    {
+        var counter = 1;
+
+        foreach (var bread in breadcrumbService.Levels)
+        {
+            var _class = counter == breadcrumbService.Levels.Count() ? "active" : string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(bread.Action) && !string.IsNullOrWhiteSpace(bread.Controller))
+            {
+                <li class="@_class">
+                    <a asp-controller="@bread.Controller" asp-action="@bread.Action" href="#">@bread.Label</a>
+            </li>
+            }
+            else
+            {
+                <li class="@_class">
+                    @bread.Label
+            </li>
+            }
+
+            counter++;
+        }
+    }
+    else
+    {
+        <li class="active"><a href="/">Home</a></li>
+    }
 </ol>

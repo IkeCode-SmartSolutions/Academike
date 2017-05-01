@@ -1,0 +1,18 @@
+﻿@model BookFormViewModel
+<form asp-controller="Book" asp-action="Form" method="post" id="bookForm">
+    @if (Model?.Id > 0)
+    {
+        <div class="form-group">
+            <label class="control-label" for="name">#ID</label>
+            @Html.DisplayTextFor(i => i.Id)
+        </div>
+    }
+    <div class="form-group">
+        <label class="control-label" for="name">Nome</label>
+        @Html.TextBoxFor(i => i.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="name">Descrição</label>
+        @Html.TextBoxFor(i => i.Description, new { @class = "form-control" })
+    </div>
+</form>

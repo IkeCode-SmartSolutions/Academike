@@ -1,23 +1,57 @@
+@inject IIcPageMetadataService pageMetadataService
+@inject IIcPageHeaderSearchService pageHeaderSearchService
+@inject IIcPageHeaderButtonsService pageHeaderButtonsService
+
 <div class="page-header">
     <div class="row">
         <div class="col-md-4 text-xs-center text-md-left text-nowrap">
-            <h1><i class="page-header-icon ion-ios-pulse-strong"></i>Nota</h1>
+            <h1>
+                <i class="page-header-icon @pageMetadataService.Icon"></i>
+                @pageMetadataService.Title
+            </h1>
         </div>
 
-        <hr class="page-wide-block visible-xs visible-sm">
+        <hr class="page-wide-block visible-xs visible-sm" />
 
+        @foreach (var button in pageHeaderButtonsService?.Buttons)
+        {
         <div class="col-xs-12 width-md-auto width-lg-auto width-xl-auto pull-md-right">
-            <a href="#" class="btn btn-primary btn-block"><span class="btn-label-icon left ion-plus-round"></span>Novo</a>
+            @if(string.IsNullOrWhiteSpace(button.Controller) && string.IsNullOrWhiteSpace(button.Action))
+            { 
+            <a href="#" class="@button.Class" @button.CustomAttributes>
+                @if (!string.IsNullOrWhiteSpace(button.Icon))
+                {
+                    <span class="btn-label-icon left @button.Icon"></span>
+                }
+                @button.Title
+            </a>
+            }
+            else
+            {
+                <a asp-controller="@button.Controller" asp-action="@button.Action"
+                   class="@button.Class" @button.CustomAttributes>
+                    @if (!string.IsNullOrWhiteSpace(button.Icon))
+                    {
+                        <span class="btn-label-icon left @button.Icon"></span>
+                    }
+                    @button.Title
+                </a>
+            }
         </div>
+        }
 
-        <!-- Spacer -->
-        <div class="m-b-2 visible-xs visible-sm clearfix"></div>
+        @if (pageHeaderSearchService != null && pageHeaderSearchService.Configured)
+        {
+            <div class="m-b-2 visible-xs visible-sm clearfix"></div>
 
-        <form action="" class="page-header-form col-xs-12 col-md-4 pull-md-right">
-            <div class="input-group">
-                <span class="input-group-addon b-a-0 font-size-16"><i class="ion-search"></i></span>
-                <input type="text" placeholder=" pesquisar..." class="form-control p-l-0 b-a-0">
-            </div>
-        </form>
+            <form asp-controller="@pageHeaderSearchService.Controller"
+                  asp-action="@pageHeaderSearchService.Action"
+                  class="page-header-form col-xs-12 col-md-4 pull-md-right">
+                <div class="input-group">
+                    <span class="input-group-addon b-a-0 font-size-16"><i class="ion-search"></i></span>
+                    <input type="text" placeholder=" @pageHeaderSearchService.Placeholder..." class="form-control p-l-0 b-a-0">
+                </div>
+            </form>
+        }
     </div>
 </div>

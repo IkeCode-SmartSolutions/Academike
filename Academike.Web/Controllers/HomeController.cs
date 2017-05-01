@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Academike.Web.Services;
 
 namespace Academike.Web.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        public HomeController(IIcLayoutMetadataServiceContainer layoutMetadataService)
+            : base(layoutMetadataService)
+        {
+
+        }
+
         public IActionResult Index()
         {
             return View();

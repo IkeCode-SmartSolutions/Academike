@@ -3,27 +3,30 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Learnike;
-(function (Learnike) {
+/// <reference path="../node_modules/@types/jquery/index.d.ts" /> 
+var Academike;
+(function (Academike) {
     var Base = (function () {
         function Base() {
             this.apiSettings.baseUrl = 'http://localhost:13378/api';
         }
         return Base;
     }());
-    Learnike.Base = Base;
-})(Learnike || (Learnike = {}));
-var Learnike;
-(function (Learnike) {
+    Academike.Base = Base;
+})(Academike || (Academike = {}));
+/// <reference path="_references.ts" />
+var Academike;
+(function (Academike) {
     var Book = (function (_super) {
         __extends(Book, _super);
         function Book() {
             var _this = _super.call(this) || this;
             _this.apiRelativeBasePath = '/book';
+            var a = $("");
             return _this;
         }
         return Book;
-    }(Learnike.Base));
-    Learnike.Book = Book;
-})(Learnike || (Learnike = {}));
-//# sourceMappingURL=learnike.js.map
+    }(Academike.Base));
+    Academike.Book = Book;
+})(Academike || (Academike = {}));
+//# sourceMappingURL=academike.js.map

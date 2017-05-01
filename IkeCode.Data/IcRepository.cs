@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace IkeCode.Data
 {
@@ -29,7 +26,7 @@ namespace IkeCode.Data
         /// <param name="limit"></param>
         /// <param name="order">(Nullable)</param>
         /// <returns></returns>
-        public IEnumerable<TEntity> Get(string[] includes, int offset, int limit, string order)
+        public IEnumerable<TEntity> Get(string[] includes = null, int offset = 0, int limit = 15, string order = "")
         {
             if (offset < 0)
                 throw new ArgumentOutOfRangeException("offset", "offset parameter must to be greater than or equal to 0");

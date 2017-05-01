@@ -1,4 +1,4 @@
-﻿module Learnike {
+﻿module Academike {
 
     export interface ICRUDView {
         apiRelativeBasePath: string;

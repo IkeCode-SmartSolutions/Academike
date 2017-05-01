@@ -3,10 +3,11 @@
     "noEmitOnError": true,
     "noImplicitAny": false,
     "outDir": "./wwwroot/js",
-    "outFile": "./wwwroot/js/learnike.js",
+    "outFile": "./wwwroot/js/academike.js",
     "removeComments": false,
     "sourceMap": true,
-    "target": "es5"
+    "target": "es5",
+    "types": []
   },
   "exclude": [
     "node_modules",
