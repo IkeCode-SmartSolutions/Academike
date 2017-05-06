@@ -17,22 +17,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Biologia</td>
-                        <td>Meu caderno cheio de anotações incriveis sobre a vida</td>
-                        <td style="text-align: center">
-                            <a href="#"><i class="fa fa-edit"></i></a>
-                            <a href="#"><i class="fa fa-trash"></i></a>
-                        </td>
-                    </tr>
                     @foreach (var book in Model.Books)
                     {
                         <tr>
                             <td>@book.Name</td>
                             <td>@book.Description</td>
                             <td style="text-align: center">
-                                <a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id"><i class="fa fa-edit"></i></a>
-                                <a href="#"><i class="fa fa-trash"></i></a>
+                                <a asp-controller="Book" asp-action="Get" asp-route-id="@book.Id"><i class="fa fa-edit"></i></a>
+                                <a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     }

@@ -8,6 +8,7 @@ namespace IkeCode.Data
     {
         int Id { get; }
         DateTime CreatedAt { get; }
+        byte[] LastUpdate { get; }
     }
 
     public class IcBaseModel : IIcBaseModel
@@ -19,7 +20,6 @@ namespace IkeCode.Data
         public DateTime CreatedAt { get; set; }
 
         [Timestamp]
-        [ConcurrencyCheck]
         public byte[] LastUpdate { get; set; }
     }
 }

@@ -29,51 +29,80 @@ namespace Academike.Web.Controllers
 
             var vm = new BookViewModel(LayoutMetadataService)
             {
-                Books = books.Select(i => new BookFormViewModel()
+                Books = books.Select(i => new BookFormViewModel(i.Id, LayoutMetadataService)
                 {
-                    Id = i.Id,
                     Name = i.Title,
                     Description = i.Description
                 })
             };
-            
-            return View(vm);
+
+            return View("Index", vm);
         }
 
-        [Route("editar/{id:int?}")]
-        public IActionResult Edit(int id)
+        [Route("{id:int?}")]
+        public IActionResult Get(int id)
         {
+            LayoutMetadataService.PageMetadataService.AddTitle("Cadernos");
+            LayoutMetadataService.BreadcrumbService.Add("Cadernos");
+
             if (id == 0)
             {
                 ViewData["Title"] = "Novo -> Caderno";
+                LayoutMetadataService.BreadcrumbService.Add("Novo");
             }
             else
             {
                 ViewData["Title"] = string.Format("Editando -> Caderno #{0}", id);
+                LayoutMetadataService.BreadcrumbService.Add("Editar");
             }
 
-            var book = _bookRepository.Get(id);
+            var vm = new BookFormViewModel(id, LayoutMetadataService);
 
-            var vm = new BookFormViewModel(id, LayoutMetadataService)
+            if (id > 0)
             {
-                Id = book.Id,
-                Name = book.Title,
-                Description = book.Description
-            };
+                var book = _bookRepository.Get(id);
+
+                vm = new BookFormViewModel(id, LayoutMetadataService)
+                {
+                    Id = book.Id,
+                    Name = book.Title,
+                    Description = book.Description
+                };
+            }
 
             return View("Form", vm);
         }
 
+        [HttpGet]
+        [Route("{id:int}/remover")]
+        public IActionResult Delete(int id)
+        {
+            _bookRepository.Remove(id);
+
+            return RedirectToAction(nameof(Index));
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Form(BookFormViewModel model)
+        public IActionResult Post(BookFormViewModel model)
         {
-            var book = new Book()
+            Book book;
+
+            if (model.Id == 0)
             {
-                Title = model.Name,
-                Description = model.Description,
-                Owner = SessionUser
-            };
+                book = new Book()
+                {
+                    Title = model.Name,
+                    Description = model.Description,
+                    Owner = SessionUser
+                };
+            }
+            else
+            {
+                book = _bookRepository.Get(model.Id);
+                book.Title = model.Name;
+                book.Description = model.Description;
+            }
 
             _bookRepository.Upsert(book);
 

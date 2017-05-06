@@ -8,14 +8,6 @@ namespace Academike.Web.ViewModels
         public BookFormViewModel(int id, IIcLayoutMetadataServiceContainer layoutMetadataService)
             : base(layoutMetadataService)
         {
-            LayoutMetadataService.PageMetadataService.AddTitle("Cadernos");
-            LayoutMetadataService.BreadcrumbService.Add("Cadernos");
-
-            if (id > 0)
-                LayoutMetadataService.BreadcrumbService.Add("Editar");
-            else
-                LayoutMetadataService.BreadcrumbService.Add("Novo");
-
             Id = id;
         }
 
@@ -25,8 +17,8 @@ namespace Academike.Web.ViewModels
 
         }
 
-        internal BookFormViewModel() : base() { }
-
+        public BookFormViewModel() : base() { }
+        
         public int Id { get; set; }
 
         [Required]

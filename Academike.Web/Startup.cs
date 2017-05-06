@@ -10,6 +10,7 @@ using IkeCode.Data;
 using Academike.Data;
 using Academike.Model;
 using Academike.Web.Services;
+using Academike.Web.ViewModels;
 
 namespace Academike
 {
@@ -61,6 +62,7 @@ namespace Academike
             services.AddScoped<IIcPageMetadataService, IcPageMetadataService>();
             services.AddScoped<IIcPageHeaderSearchService, IcPageHeaderSearchService>();
             services.AddScoped<IIcPageHeaderButtonsService, IcPageHeaderButtonsService>();
+            services.AddScoped<BookFormViewModel>();
 
             services.AddMvc();
         }

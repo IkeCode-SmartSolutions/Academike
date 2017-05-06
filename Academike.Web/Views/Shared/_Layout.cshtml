@@ -1,11 +1,11 @@
 ﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
-@model BaseViewModel
+@inject BookFormViewModel bookFormViewModel
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <title>@ViewData["Title"] - Academike</title>
+    <title>@ViewData["Title"] :: Academike ::</title>
 
     <environment names="Development">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,800,300&amp;subset=latin" rel="stylesheet" type="text/css">
@@ -68,6 +68,8 @@
                 @RenderBody()
             </div>
         </div>
+
+        @await Html.PartialAsync("/Views/Book/_FormModal.cshtml", bookFormViewModel)
     </div>
 
     @await Html.PartialAsync("_Footer")
